@@ -8,6 +8,7 @@ import org.example.utils.constants.CurrencyConstants;
 import org.example.utils.exceptions.InvalidCurrencyCodeException;
 import org.example.utils.validation.CurrencyValidator;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class CurrencyManager {
@@ -37,7 +38,9 @@ public class CurrencyManager {
     public Set<String> getAvailableCodes(){
         String currenciesJson = _currencyService.getCurrencies();
         JsonObject jsonObject = parseJson(currenciesJson);
-        return jsonObject.getAsJsonObject("data").keySet();
+        if(jsonObject.has("data"))
+            return jsonObject.getAsJsonObject("data").keySet();
+        return new HashSet<>();
     }
 
     private Double getExchangeRate(String currencyCode){
@@ -47,7 +50,9 @@ public class CurrencyManager {
 
     private Double extractExchangeValue(String jsonData, String currencyCode){
         JsonObject jsonObject = parseJson(jsonData);
-        return jsonObject.getAsJsonObject("data").get(currencyCode).getAsDouble();
+        if(jsonObject.has("data"))
+            return jsonObject.getAsJsonObject("data").get(currencyCode).getAsDouble();
+        throw new RuntimeException("Value returned is not correct.");
     }
 
     private JsonObject parseJson(String jsonData) {
