@@ -58,6 +58,7 @@ jobs:
           path: target/out
 
   notification:
+    needs: test
     runs-on: ubuntu-latest
     env:
       EMAIL_DEST: joaohsdelfino@gmail.com
