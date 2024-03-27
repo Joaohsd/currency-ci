@@ -65,4 +65,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Send notification using mail
-        run: cd scripts/ && sh notify.sh
+        run: sh scripts/notify.sh
