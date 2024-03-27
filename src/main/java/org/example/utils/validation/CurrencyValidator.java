@@ -10,8 +10,7 @@ public class CurrencyValidator {
     }
 
     public void validateCurrencyCode(String currencyCode) throws InvalidCurrencyCodeException {
-        if (!CurrencyConstants.CURRENCY_CODES.contains(currencyCode.toUpperCase())) {
+        if (!CurrencyConstants.CURRENCY_CODES.contains(currencyCode.toUpperCase()))
             throw new InvalidCurrencyCodeException("Invalid currency code provided: " + currencyCode);
-        }
     }
 }

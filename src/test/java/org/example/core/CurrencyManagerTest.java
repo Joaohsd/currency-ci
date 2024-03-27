@@ -9,11 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -101,15 +98,16 @@ class CurrencyManagerTest {
     }
 
     @Test
-    void getAvailableCodes_InvalidServiceResponse_ReturnsEmptySet() {
+    void convert_ValidResponse_ThrowsRuntimeException() {
         // Given
-        Mockito.when(_currencyService.getCurrencies()).thenReturn("{\"data\":{}}");
+        double amount = 100.0;
+        String fromCurrency = "USD";
+        String toCurrency = "EUR";
 
-        // When
-        Set<String> availableCodes = _currencyManager.getAvailableCodes();
+        Mockito.when(_currencyService.getLatest(fromCurrency, fromCurrency)).thenReturn("{\"data\":{}}");
 
         // Then
-        assertTrue(availableCodes.isEmpty());
+        assertThrows(RuntimeException.class, () -> _currencyManager.convert(amount, fromCurrency, toCurrency));
     }
 
     @Test
@@ -122,6 +120,27 @@ class CurrencyManagerTest {
 
         // Then
         assertTrue(availableCodes.equals(CurrencyConstants.CURRENCY_CODES));
+    }
+
+    @Test
+    void getAvailableCodes_InvalidServiceResponse_ReturnsEmptySet() {
+        // Given
+        Mockito.when(_currencyService.getCurrencies()).thenReturn("{}");
+
+        // When / Then
+        assertThrows(RuntimeException.class, () -> _currencyManager.getAvailableCodes());
+    }
+
+    @Test
+    void getAvailableCodes_ValidServiceResponse_ReturnsEmptySet() {
+        // Given
+        Mockito.when(_currencyService.getCurrencies()).thenReturn("{\"data\":{}}");
+
+        // When
+        Set<String> availableCodes = _currencyManager.getAvailableCodes();
+
+        // Then
+        assertTrue(availableCodes.isEmpty());
     }
 
 }
