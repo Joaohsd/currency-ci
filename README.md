@@ -32,7 +32,7 @@ cd currency-ci
 3. Run the tests ✔️
 
 ```bash
-mvn clean install
+mvn clean site
 ```
 
 You can find the reports in `target/site` folder.
