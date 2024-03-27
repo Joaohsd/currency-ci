@@ -1,3 +1,5 @@
+[![Cuurency Converter CI](https://github.com/Joaohsd/currency-ci/actions/workflows/maven.yml/badge.svg)](https://github.com/Joaohsd/currency-ci/actions/workflows/maven.yml)
+
 # Currency Converter 💱
 
 This Java project is a currency converter application that utilizes the [Free Currency API]((https://freecurrencyapi.com/)) to estimate currency conversion rates.
