@@ -11,8 +11,10 @@ import org.example.utils.validation.CurrencyValidator;
 import java.util.Set;
 
 public class CurrencyManager {
+    
     private CurrencyService _currencyService;
     private CurrencyValidator _currencyValidator;
+    
     public CurrencyManager(CurrencyService currencyService, CurrencyValidator currencyValidator) {
         _currencyService = currencyService;
         _currencyValidator = currencyValidator;
