@@ -39,11 +39,16 @@ public class CurrencyDAO implements CurrencyService{
 
     @Override
     public String getLatest(String baseCurrency) {
-        String uri = _uri.toString() + _apiVersion + "latest?apikey=" + _apiKey + "&base_currency=" + baseCurrency;
+        StringBuilder uriBuilder = new StringBuilder(_uri.toString())
+                                        .append(_apiVersion)
+                                        .append("latest?apikey=")
+                                        .append(_apiKey)
+                                        .append("&base_currency=")
+                                        .append(baseCurrency);
 
         try {
             _httpRequest = HttpRequest.newBuilder()
-                        .uri(new URI(uri))
+                        .uri(new URI(uriBuilder.toString()))
                         .timeout(Duration.of(10, SECONDS))
                         .header("Content-Type", "application/json")
                         .GET()
@@ -128,11 +133,14 @@ public class CurrencyDAO implements CurrencyService{
 
     @Override
     public String getCurrencies() {
-        String uri = _uri.toString() + _apiVersion + "currencies?apikey=" + _apiKey;
+        StringBuilder uriBuilder = new StringBuilder(_uri.toString())
+                                        .append(_apiVersion)
+                                        .append("currencies?apikey=")
+                                        .append(_apiKey);
 
         try {
             _httpRequest = HttpRequest.newBuilder()
-                        .uri(new URI(uri))
+                        .uri(new URI(uriBuilder.toString()))
                         .timeout(Duration.of(10, SECONDS))
                         .header("Content-Type", "application/json")
                         .GET()
