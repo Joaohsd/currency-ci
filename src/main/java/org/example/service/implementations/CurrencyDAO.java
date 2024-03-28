@@ -18,7 +18,7 @@ public class CurrencyDAO implements CurrencyService{
     private ConfigurationDAO _configurationDAO;
 
     private URI _uri;
-    private final String _apiVersion = "v1";
+    private final String _apiVersion = "v1/";
     private final String _apiKey;
 
     private HttpRequest _httpRequest;
