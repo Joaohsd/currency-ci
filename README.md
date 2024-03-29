@@ -50,3 +50,20 @@ mvn clean install
 ```bash
 java -jar out/file.jar <value> <from_code> <to_code>
 ```
+
+2. Avalable codes for convertion
+
+| Currency Code | Currency Code | Currency Code | Currency Code |
+|---------------|---------------|---------------|---------------|
+| EUR           | JPY           | GBP           | RUB           |
+| USD           | BGN           | HUF           | TRY           |
+| CZK           | DKK           | PLN           | AUD           |
+| RON           | SEK           | CHF           | BRL           |
+| NOK           | ISK           | ISK           | CAD           |
+| HRK           | HKD           | IDR           | CNY           |
+| MXN           | MYR           | NZD           | PHP           |
+| SGD           | THB           | ZAR           | INR           |
+| ILS           | KRW           |
+
+
+
